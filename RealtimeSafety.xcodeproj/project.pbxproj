@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C636E411D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */; };
+		4C636E421D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
+		4C636E431D0D87AF005A380B /* AERealtimeSafetyMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4C636E461D0D882E005A380B /* AERealtimeSafetyMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C636E311D0D878B005A380B /* libRealtimeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRealtimeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeSafetyMonitor-arm64.s"; sourceTree = "<group>"; };
+		4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeSafetyMonitor-simulator-x86_64.s"; sourceTree = "<group>"; };
+		4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERealtimeSafetyMonitor.h; sourceTree = "<group>"; };
+		4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERealtimeSafetyMonitor.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C636E2E1D0D878B005A380B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C636E281D0D878B005A380B = {
+			isa = PBXGroup;
+			children = (
+				4C636E331D0D878B005A380B /* RealtimeSafety */,
+				4C636E321D0D878B005A380B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C636E321D0D878B005A380B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C636E311D0D878B005A380B /* libRealtimeSafety.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C636E331D0D878B005A380B /* RealtimeSafety */ = {
+			isa = PBXGroup;
+			children = (
+				4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */,
+				4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */,
+				4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */,
+				4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */,
+			);
+			path = RealtimeSafety;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4C636E451D0D8828005A380B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C636E461D0D882E005A380B /* AERealtimeSafetyMonitor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4C636E301D0D878B005A380B /* RealtimeSafety */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeSafety" */;
+			buildPhases = (
+				4C636E2D1D0D878B005A380B /* Sources */,
+				4C636E2E1D0D878B005A380B /* Frameworks */,
+				4C636E451D0D8828005A380B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RealtimeSafety;
+			productName = RealtimeSafety;
+			productReference = 4C636E311D0D878B005A380B /* libRealtimeSafety.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C636E291D0D878B005A380B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "A Tasty Pixel";
+				TargetAttributes = {
+					4C636E301D0D878B005A380B = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeSafety" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4C636E281D0D878B005A380B;
+			productRefGroup = 4C636E321D0D878B005A380B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C636E301D0D878B005A380B /* RealtimeSafety */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C636E2D1D0D878B005A380B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C636E421D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s in Sources */,
+				4C636E431D0D87AF005A380B /* AERealtimeSafetyMonitor.m in Sources */,
+				4C636E411D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4C636E381D0D878B005A380B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4C636E391D0D878B005A380B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C636E3B1D0D878B005A380B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4C636E3C1D0D878B005A380B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeSafety" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C636E381D0D878B005A380B /* Debug */,
+				4C636E391D0D878B005A380B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeSafety" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C636E3B1D0D878B005A380B /* Debug */,
+				4C636E3C1D0D878B005A380B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C636E291D0D878B005A380B /* Project object */;
+}
