@@ -1,5 +1,5 @@
 //
-//  AERealtimeSafetyMonitor.h
+//  AERealtimeWatchdog.h
 //  TheAmazingAudioEngine
 //
 //  Created by Michael Tyson on 12/06/2016.
@@ -26,35 +26,24 @@
 //
 
 #ifdef DEBUG
-#define REALTIME_SAFETY_MONITOR_ENABLED 1
+// Uncomment the following to enable the realtime watchdog
+// #define REALTIME_WATCHDOG_ENABLED 1
 #endif
 
 #ifdef __OBJC__
 
+#import <pthread.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#import <pthread.h>
-
-/*!
- * Initialize realtime safety monitor
- *
- *  Call this method from the audio thread to initialize the systems that monitor
- *  for non-realtime-thread-safe activities like Objective-C use and memory allocation.
- *
- *  Safe to call multiple times, as implementation is simply a variable assignment.
- *
- * @param audioThread The audio thread
- */
-void AERealtimeSafetyMonitorInit(pthread_t audioThread);
 
 /*!
  * Function called when unsafe activity is noticed on the audio thread
  *
  *  Put a breakpoint here to debug.
  */
-void AERealtimeSafetyMonitorUnsafeActivityWarning();
+void AERealtimeWatchdogUnsafeActivityWarning();
 
 #ifdef __cplusplus
 }

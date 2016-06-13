@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C636E411D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */; };
-		4C636E421D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
-		4C636E431D0D87AF005A380B /* AERealtimeSafetyMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4C636E461D0D882E005A380B /* AERealtimeSafetyMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C636E411D0D87AF005A380B /* AERealtimeWatchdog-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3D1D0D87AF005A380B /* AERealtimeWatchdog-arm64.s */; };
+		4C636E421D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
+		4C636E431D0D87AF005A380B /* AERealtimeWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4C636E461D0D882E005A380B /* AERealtimeWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C636E311D0D878B005A380B /* libRealtimeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRealtimeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeSafetyMonitor-arm64.s"; sourceTree = "<group>"; };
-		4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeSafetyMonitor-simulator-x86_64.s"; sourceTree = "<group>"; };
-		4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERealtimeSafetyMonitor.h; sourceTree = "<group>"; };
-		4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERealtimeSafetyMonitor.m; sourceTree = "<group>"; };
+		4C636E311D0D878B005A380B /* libRealtimeWatchdog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRealtimeWatchdog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C636E3D1D0D87AF005A380B /* AERealtimeWatchdog-arm64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeWatchdog-arm64.s"; sourceTree = "<group>"; };
+		4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeWatchdog-simulator-x86_64.s"; sourceTree = "<group>"; };
+		4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERealtimeWatchdog.h; sourceTree = "<group>"; };
+		4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERealtimeWatchdog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 		4C636E281D0D878B005A380B = {
 			isa = PBXGroup;
 			children = (
-				4C636E331D0D878B005A380B /* RealtimeSafety */,
+				4C636E331D0D878B005A380B /* RealtimeWatchdog */,
 				4C636E321D0D878B005A380B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,20 +43,20 @@
 		4C636E321D0D878B005A380B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C636E311D0D878B005A380B /* libRealtimeSafety.a */,
+				4C636E311D0D878B005A380B /* libRealtimeWatchdog.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C636E331D0D878B005A380B /* RealtimeSafety */ = {
+		4C636E331D0D878B005A380B /* RealtimeWatchdog */ = {
 			isa = PBXGroup;
 			children = (
-				4C636E3D1D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s */,
-				4C636E3E1D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s */,
-				4C636E3F1D0D87AF005A380B /* AERealtimeSafetyMonitor.h */,
-				4C636E401D0D87AF005A380B /* AERealtimeSafetyMonitor.m */,
+				4C636E3D1D0D87AF005A380B /* AERealtimeWatchdog-arm64.s */,
+				4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */,
+				4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */,
+				4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */,
 			);
-			path = RealtimeSafety;
+			path = RealtimeWatchdog;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -66,16 +66,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C636E461D0D882E005A380B /* AERealtimeSafetyMonitor.h in Headers */,
+				4C636E461D0D882E005A380B /* AERealtimeWatchdog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4C636E301D0D878B005A380B /* RealtimeSafety */ = {
+		4C636E301D0D878B005A380B /* RealtimeWatchdog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeSafety" */;
+			buildConfigurationList = 4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeWatchdog" */;
 			buildPhases = (
 				4C636E2D1D0D878B005A380B /* Sources */,
 				4C636E2E1D0D878B005A380B /* Frameworks */,
@@ -85,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = RealtimeSafety;
-			productName = RealtimeSafety;
-			productReference = 4C636E311D0D878B005A380B /* libRealtimeSafety.a */;
+			name = RealtimeWatchdog;
+			productName = RealtimeWatchdog;
+			productReference = 4C636E311D0D878B005A380B /* libRealtimeWatchdog.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeSafety" */;
+			buildConfigurationList = 4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeWatchdog" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -116,7 +116,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C636E301D0D878B005A380B /* RealtimeSafety */,
+				4C636E301D0D878B005A380B /* RealtimeWatchdog */,
 			);
 		};
 /* End PBXProject section */
@@ -126,9 +126,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C636E421D0D87AF005A380B /* AERealtimeSafetyMonitor-simulator-x86_64.s in Sources */,
-				4C636E431D0D87AF005A380B /* AERealtimeSafetyMonitor.m in Sources */,
-				4C636E411D0D87AF005A380B /* AERealtimeSafetyMonitor-arm64.s in Sources */,
+				4C636E421D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s in Sources */,
+				4C636E431D0D87AF005A380B /* AERealtimeWatchdog.m in Sources */,
+				4C636E411D0D87AF005A380B /* AERealtimeWatchdog-arm64.s in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +240,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeSafety" */ = {
+		4C636E2C1D0D878B005A380B /* Build configuration list for PBXProject "RealtimeWatchdog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C636E381D0D878B005A380B /* Debug */,
@@ -249,7 +249,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeSafety" */ = {
+		4C636E3A1D0D878B005A380B /* Build configuration list for PBXNativeTarget "RealtimeWatchdog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C636E3B1D0D878B005A380B /* Debug */,
