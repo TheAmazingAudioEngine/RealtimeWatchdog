@@ -19,6 +19,10 @@ Idea by [Taylor Holliday](http://audulus.com/), implemented by [Michael Tyson](h
 Usage
 -----
 
+With Cocoapods: add the "`RealtimeWatchdog`" pod to your Podfile, and call `pod install`. Done!
+
+Without Cocoapods:
+
 1. Drag *RealtimeWatchdog.xcodeproj* into your project. 
 2. Select your app target, open the "Link Binary With Libraries" tab, click the "+" button and select *libRealtimeWatchdog.a*. Done.
 
