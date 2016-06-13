@@ -1,36 +1,36 @@
-Realtime Thread Safety Monitor
-==============================
+Realtime Thread Safety Watchdog
+===============================
 
 This library for iOS acts as a watchdog for activities on the Core Audio thread that are considered unsafe:
 
 1. Taking locks
 2. Allocating memory
 3. Using Objective-C
+4. File or network IO
 
-It works by overriding a number of functions: `malloc`, `free`, `objc_storeStrong`, `objc_msgSend` (for 64-bit devices and the 64-bit simulator only, for now), `pthread_mutex_lock` and `objc_sync_enter`. When a call is intercepted, a warning is printed to the console. You can also put a breakpoint on `AERealtimeSafetyMonitorUnsafeActivityWarning`.
+It works by overriding a number of system functions, including `malloc`, `free`, `objc_storeStrong`, `objc_msgSend` (for 64-bit devices and the 64-bit simulator only, for now), `pthread_mutex_lock` and `objc_sync_enter`, `read`, `write`, etc. When a call is intercepted, a warning is printed to the console. You can also put a breakpoint on `AERealtimeWatchdogUnsafeActivityWarning`.
 
 This library is also built into [The Amazing Audio Engine 2](http://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine2).
+
+Idea by [Taylor Holliday](http://audulus.com/), implemented by [Michael Tyson](http://atastypixel.com/blog).
 
 Usage
 -----
 
-1. Drag *RealtimeSafety.xcodeproj* into your project. 
-2. Select your app target, open the "Link Binary With Libraries" tab, click the "+" button and select *libRealtimeSafety.a*. 
-3. Then make sure the "Header Search Paths" build setting contains `"$(BUILT_PRODUCTS_DIR)"`. 
-4. Add `#import <RealtimeSafety/AERealtimeSafetyMonitor.h>` to the top of the implementation file that contains your audio code
-5. Call `AERealtimeSafetyMonitorInit(pthread_self())` at least once from your audio thread.
+1. Drag *RealtimeWatchdog.xcodeproj* into your project. 
+2. Select your app target, open the "Link Binary With Libraries" tab, click the "+" button and select *libRealtimeWatchdog.a*. Done.
 
-You can easily disable the monitor by commenting out the `#define REALTIME_SAFETY_MONITOR_ENABLED 1` line in `AERealtimeSafetyMonitor.h`.
+You can easily disable the monitor by commenting out the `#define REALTIME_WATCHDOG_ENABLED 1` line in `AERealtimeWatchdog.h`.
 
 It will only be active for debug builds, so you can leave it on safely.
 
-Note that for 64-bit devices and the 64-bit simulator, this library provides its own implementation of `objc_msgSend`, which means Objective-C method calls will be marginally slower.
+Note that for 64-bit devices and the 64-bit simulator, this library provides its own wrapper implementation of `objc_msgSend`, which means Objective-C method calls will be marginally slower.
 
 For more discussion on realtime thread safety, see this article: [Responsible audio development: An appeal](http://atastypixel.com/blog/responsible-audio-development-an-appeal/).
 
 
-Realtime Thread Safety Monitor License
---------------------------------------
+Realtime Thread Safety Watchdog License
+---------------------------------------
 
 Copyright (C) 2012-2016 A Tasty Pixel
 
