@@ -10,6 +10,8 @@ This library for iOS acts as a watchdog for activities on the Core Audio thread 
 
 It works by overriding a number of system functions, including `malloc`, `free`, `objc_storeStrong`, `objc_msgSend` (for 64-bit devices and the 64-bit simulator only, for now), `pthread_mutex_lock` and `objc_sync_enter`, `read`, `write`, etc. When a call is intercepted, a warning is printed to the console. You can also put a breakpoint on `AERealtimeWatchdogUnsafeActivityWarning`.
 
+It won’t catch everything, and it won’t catch anything in Apple’s own system code, but it’ll catch some locks, some memory allocation, all Objective-C use (but not Swift), all object retains, and some common IO tasks, in your code and that of any static libraries you’re using.
+
 This library is also built into [The Amazing Audio Engine 2](http://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine2).
 
 Idea by [Taylor Holliday](http://audulus.com/), implemented by [Michael Tyson](http://atastypixel.com/blog).
