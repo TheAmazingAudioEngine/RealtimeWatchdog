@@ -24,7 +24,9 @@ With Cocoapods: add the "`RealtimeWatchdog`" pod to your Podfile, and call `pod 
 Without Cocoapods:
 
 1. Drag *RealtimeWatchdog.xcodeproj* into your project. 
-2. Select your app target, open the "Link Binary With Libraries" tab, click the "+" button and select *libRealtimeWatchdog.a*. Done.
+2. Select your app target's Build Settings, open the "Link Binary With Libraries" item, click the "+" button and select *libRealtimeWatchdog.a*. Done.
+
+If you get any errors about implicit depedencies, you may also need to open the "Target Dependencies" item, and add *RealtimeWatchdog* there.
 
 You can easily disable the monitor by commenting out the `#define REALTIME_WATCHDOG_ENABLED 1` line in `AERealtimeWatchdog.h`.
 
