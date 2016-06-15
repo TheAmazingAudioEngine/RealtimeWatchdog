@@ -80,6 +80,8 @@ typedef void * (*calloc_t)(size_t, size_t);
 typedef void * (*realloc_t)(void *, size_t);
 typedef void (*free_t)(void*);
 typedef int (*pthread_mutex_lock_t)(pthread_mutex_t *);
+typedef int (*pthread_rwlock_wrlock_t)(pthread_rwlock_t *);
+typedef int (*pthread_rwlock_rdlock_t)(pthread_rwlock_t *);
 typedef int (*objc_sync_enter_t)(id obj);
 typedef id (*objc_storeStrong_t)(id *object, id value);
 typedef id (*objc_msgSend_t)(void);
@@ -134,6 +136,20 @@ int pthread_mutex_lock(pthread_mutex_t * mutex) {
     if ( !funcptr ) funcptr = (pthread_mutex_lock_t) dlsym(RTLD_NEXT, "pthread_mutex_lock");
     if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_mutex_lock");
     return funcptr(mutex);
+}
+
+int pthread_rwlock_wrlock(pthread_rwlock_t * rwlock) {
+    static pthread_rwlock_wrlock_t funcptr = NULL;
+    if ( !funcptr ) funcptr = (pthread_rwlock_wrlock_t) dlsym(RTLD_NEXT, "pthread_rwlock_wrlock");
+    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_rwlock_wrlock");
+    return funcptr(rwlock);
+}
+
+int pthread_rwlock_rdlock(pthread_rwlock_t * rwlock) {
+    static pthread_rwlock_rdlock_t funcptr = NULL;
+    if ( !funcptr ) funcptr = (pthread_rwlock_rdlock_t) dlsym(RTLD_NEXT, "pthread_rwlock_rdlock");
+    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_rwlock_rdlock");
+    return funcptr(rwlock);
 }
 
 int objc_sync_enter(id obj) {
