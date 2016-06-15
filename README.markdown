@@ -34,7 +34,7 @@ It will only be active for debug builds, so you can leave it on safely.
 
 Note that for 64-bit devices and the 64-bit simulator, this library provides its own wrapper implementation of `objc_msgSend`, which means Objective-C method calls will be marginally slower.
 
-For more discussion on realtime thread safety, see this article: [Responsible audio development: An appeal](http://atastypixel.com/blog/responsible-audio-development-an-appeal/).
+For more discussion on realtime thread safety, see this article: [Four common mistakes in audio development](http://atastypixel.com/blog/four-common-mistakes-in-audio-development/).
 
 
 Realtime Thread Safety Watchdog License
