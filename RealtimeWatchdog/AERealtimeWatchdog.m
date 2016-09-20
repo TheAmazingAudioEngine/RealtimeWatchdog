@@ -34,6 +34,7 @@
 #import <pthread.h>
 #import <string.h>
 #include <sys/socket.h>
+#include <dispatch/dispatch.h>
 
 // Uncomment the following to report every time we spot something bad, not just the first time
 // #define REPORT_EVERY_INFRACTION
@@ -103,162 +104,128 @@ typedef ssize_t (*pwrite_t)(int fildes, const void *buf, size_t nbyte, off_t off
 
 // Overrides
 
+#define CHECK_FUNCTION_MSG(name, msg)                       \
+    static name##_t funcptr = NULL;                             \
+    static dispatch_once_t onceToken;                            \
+    dispatch_once(&onceToken, ^{                                \
+        funcptr = (malloc_t) dlsym(RTLD_NEXT, #name);        \
+    }); \
+    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning(msg);
+
+#define CHECK_FUNCTION(name) CHECK_FUNCTION_MSG(name, #name)
+
 void * malloc(size_t sz) {
-    static malloc_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (malloc_t) dlsym(RTLD_NEXT, "malloc");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("malloc");
+    CHECK_FUNCTION(malloc);
     return funcptr(sz);
 }
 
 void * calloc(size_t count, size_t size) {
-    static calloc_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (calloc_t) dlsym(RTLD_NEXT, "calloc");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("calloc");
+    CHECK_FUNCTION(calloc);
     return funcptr(count, size);
 }
 
 void * realloc(void * ptr, size_t size) {
-    static realloc_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (realloc_t) dlsym(RTLD_NEXT, "realloc");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("realloc");
+    CHECK_FUNCTION(realloc);
     return funcptr(ptr, size);
 }
 
 void free(void *p) {
-    static free_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (free_t) dlsym(RTLD_NEXT, "free");
-    if ( p && AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("free");
+    CHECK_FUNCTION(free);
     funcptr(p);
 }
 
 int pthread_mutex_lock(pthread_mutex_t * mutex) {
-    static pthread_mutex_lock_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (pthread_mutex_lock_t) dlsym(RTLD_NEXT, "pthread_mutex_lock");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_mutex_lock");
+    CHECK_FUNCTION(pthread_mutex_lock);
     return funcptr(mutex);
 }
 
 int pthread_rwlock_wrlock(pthread_rwlock_t * rwlock) {
-    static pthread_rwlock_wrlock_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (pthread_rwlock_wrlock_t) dlsym(RTLD_NEXT, "pthread_rwlock_wrlock");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_rwlock_wrlock");
+    CHECK_FUNCTION(pthread_rwlock_wrlock);
     return funcptr(rwlock);
 }
 
 int pthread_rwlock_rdlock(pthread_rwlock_t * rwlock) {
-    static pthread_rwlock_rdlock_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (pthread_rwlock_rdlock_t) dlsym(RTLD_NEXT, "pthread_rwlock_rdlock");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pthread_rwlock_rdlock");
+    CHECK_FUNCTION(pthread_rwlock_rdlock);
     return funcptr(rwlock);
 }
 
 int objc_sync_enter(id obj) {
-    static objc_sync_enter_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (objc_sync_enter_t) dlsym(RTLD_NEXT, "objc_sync_enter");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("@synchronized block");
+    CHECK_FUNCTION_MSG(objc_sync_enter, "@synchronized block");
     return funcptr(obj);
 }
 
 id objc_storeStrong(id * object, id value);
 id objc_storeStrong(id * object, id value) {
-    static objc_storeStrong_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (objc_storeStrong_t) dlsym(RTLD_NEXT, "objc_storeStrong");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("object retain");
+    CHECK_FUNCTION_MSG(objc_storeStrong, "object retain");
     return funcptr(object,value);
 }
 
 objc_msgSend_t AERealtimeWatchdogLookupMsgSendAndWarn(void);
 objc_msgSend_t AERealtimeWatchdogLookupMsgSendAndWarn(void) {
     // This method is called by our objc_msgSend implementation
-    static objc_msgSend_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (objc_msgSend_t) dlsym(RTLD_NEXT, "objc_msgSend");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("message send");
+    CHECK_FUNCTION_MSG(objc_msgSend, "message send");
     return funcptr;
 }
 
 ssize_t send(int socket, const void *buffer, size_t length, int flags) {
-    static send_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (send_t) dlsym(RTLD_NEXT, "send");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("send");
+    CHECK_FUNCTION(send);
     return funcptr(socket, buffer, length, flags);
 }
 
 ssize_t sendto(int socket, const void *buffer, size_t length, int flags,
                const struct sockaddr *dest_addr, socklen_t dest_len) {
-    static sendto_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (sendto_t) dlsym(RTLD_NEXT, "sendto");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("sendto");
+    CHECK_FUNCTION(sendto);
     return funcptr(socket, buffer, length, flags, dest_addr, dest_len);
 }
 
 ssize_t recv(int socket, void *buffer, size_t length, int flags) {
-    static recv_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (recv_t) dlsym(RTLD_NEXT, "recv");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("recv");
+    CHECK_FUNCTION(recv);
     return funcptr(socket, buffer, length, flags);
 }
 
 ssize_t recvfrom(int socket, void *restrict buffer, size_t length, int flags,
                  struct sockaddr *restrict address, socklen_t *restrict address_len) {
-    static recvfrom_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (recvfrom_t) dlsym(RTLD_NEXT, "recvfrom");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("recvfrom");
+    CHECK_FUNCTION(recvfrom);
     return funcptr(socket, buffer, length, flags, address, address_len);
 }
 
 FILE * fopen(const char *restrict filename, const char *restrict mode) {
-    static fopen_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (fopen_t) dlsym(RTLD_NEXT, "fopen");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("fopen");
+    CHECK_FUNCTION(fopen);
     return funcptr(filename, mode);
 }
 
 size_t fread(void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream) {
-    static fread_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (fread_t) dlsym(RTLD_NEXT, "fread");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("fread");
+    CHECK_FUNCTION(fread);
     return funcptr(ptr, size, nitems, stream);
 }
 
 size_t fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream) {
-    static fwrite_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (fwrite_t) dlsym(RTLD_NEXT, "fwrite");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("fwrite");
+    CHECK_FUNCTION(fwrite);
     return funcptr(ptr, size, nitems, stream);
 }
 
 char * fgets(char * restrict str, int size, FILE * restrict stream) {
-    static fgets_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (fgets_t) dlsym(RTLD_NEXT, "fgets");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("fgets");
+    CHECK_FUNCTION(fgets);
     return funcptr(str, size, stream);
 }
 
 ssize_t read(int fildes, void *buf, size_t nbyte) {
-    static read_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (read_t) dlsym(RTLD_NEXT, "read");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("read");
+    CHECK_FUNCTION(read);
     return funcptr(fildes, buf, nbyte);
 }
 
 ssize_t pread(int d, void *buf, size_t nbyte, off_t offset) {
-    static pread_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (pread_t) dlsym(RTLD_NEXT, "pread");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pread");
+    CHECK_FUNCTION(pread);
     return funcptr(d, buf, nbyte, offset);
 }
 
 ssize_t write(int fildes, const void *buf, size_t nbyte) {
-    static write_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (write_t) dlsym(RTLD_NEXT, "write");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("write");
+    CHECK_FUNCTION(write);
     return funcptr(fildes, buf, nbyte);
 }
 
 ssize_t pwrite(int fildes, const void *buf, size_t nbyte, off_t offset) {
-    static pwrite_t funcptr = NULL;
-    if ( !funcptr ) funcptr = (pwrite_t) dlsym(RTLD_NEXT, "pwrite");
-    if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning("pwrite");
+    CHECK_FUNCTION(pwrite);
     return funcptr(fildes, buf, nbyte, offset);
 }
 
