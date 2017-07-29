@@ -108,7 +108,7 @@ typedef ssize_t (*pwrite_t)(int fildes, const void *buf, size_t nbyte, off_t off
     static name##_t funcptr = NULL;                             \
     static dispatch_once_t onceToken;                            \
     dispatch_once(&onceToken, ^{                                \
-        funcptr = (malloc_t) dlsym(RTLD_NEXT, #name);        \
+        funcptr = (name##_t) dlsym(RTLD_NEXT, #name);        \
     }); \
     if ( AERealtimeWatchdogIsOnRealtimeThread() ) AERealtimeWatchdogUnsafeActivityWarning(msg);
 
