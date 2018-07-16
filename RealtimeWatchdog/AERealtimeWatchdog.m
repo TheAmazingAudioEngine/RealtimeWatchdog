@@ -37,7 +37,7 @@
 #include <dispatch/dispatch.h>
 
 // Uncomment the following to report every time we spot something bad, not just the first time
-// #define REPORT_EVERY_INFRACTION
+//#define REPORT_EVERY_INFRACTION
 
 
 
@@ -101,6 +101,16 @@ typedef ssize_t (*pread_t)(int d, void *buf, size_t nbyte, off_t offset);
 typedef ssize_t (*write_t)(int fildes, const void *buf, size_t nbyte);
 typedef ssize_t (*pwrite_t)(int fildes, const void *buf, size_t nbyte, off_t offset);
 
+typedef void (*dispatch_async_t)(dispatch_queue_t queue, dispatch_block_t block);
+typedef void (*dispatch_sync_t)(dispatch_queue_t queue, DISPATCH_NOESCAPE dispatch_block_t block);
+typedef void (*dispatch_async_f_t)(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work);
+typedef void (*dispatch_sync_f_t)(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work);
+typedef void (*dispatch_after_t)(dispatch_time_t when, dispatch_queue_t queue, dispatch_block_t block);
+typedef void (*dispatch_after_f_t)(dispatch_time_t when, dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work);
+typedef void (*dispatch_barrier_async_t)(dispatch_queue_t queue, dispatch_block_t block);
+typedef void (*dispatch_barrier_async_f_t)(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work);
+typedef void (*dispatch_barrier_sync_t)(dispatch_queue_t queue, DISPATCH_NOESCAPE dispatch_block_t block);
+typedef void (*dispatch_barrier_sync_f_t)(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work);
 
 // Overrides
 
@@ -227,6 +237,56 @@ ssize_t write(int fildes, const void *buf, size_t nbyte) {
 ssize_t pwrite(int fildes, const void *buf, size_t nbyte, off_t offset) {
     CHECK_FUNCTION(pwrite);
     return funcptr(fildes, buf, nbyte, offset);
+}
+
+void dispatch_async(dispatch_queue_t queue, dispatch_block_t block) {
+    CHECK_FUNCTION(dispatch_async);
+    funcptr(queue, block);
+}
+
+void dispatch_sync(dispatch_queue_t queue, DISPATCH_NOESCAPE dispatch_block_t block) {
+    CHECK_FUNCTION(dispatch_sync);
+    funcptr(queue, block);
+}
+
+void dispatch_async_f(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work) {
+    CHECK_FUNCTION(dispatch_async_f);
+    funcptr(queue, context, work);
+}
+
+void dispatch_sync_f(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work) {
+    CHECK_FUNCTION(dispatch_sync_f);
+    funcptr(queue, context, work);
+}
+
+void dispatch_after(dispatch_time_t when, dispatch_queue_t queue, dispatch_block_t block) {
+    CHECK_FUNCTION(dispatch_after);
+    funcptr(when, queue, block);
+}
+
+void dispatch_after_f(dispatch_time_t when, dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work) {
+    CHECK_FUNCTION(dispatch_after_f);
+    funcptr(when, queue, context, work);
+}
+
+void dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block) {
+    CHECK_FUNCTION(dispatch_barrier_async);
+    funcptr(queue, block);
+}
+
+void dispatch_barrier_async_f(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work) {
+    CHECK_FUNCTION(dispatch_barrier_async_f);
+    funcptr(queue, context, work);
+}
+
+void dispatch_barrier_sync(dispatch_queue_t queue, DISPATCH_NOESCAPE dispatch_block_t block) {
+    CHECK_FUNCTION(dispatch_barrier_sync);
+    funcptr(queue, block);
+}
+
+void dispatch_barrier_sync_f(dispatch_queue_t queue, void *_Nullable context, dispatch_function_t work) {
+    CHECK_FUNCTION(dispatch_barrier_sync_f);
+    funcptr(queue, context, work);
 }
 
 #endif
