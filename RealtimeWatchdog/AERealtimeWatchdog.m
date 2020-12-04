@@ -84,6 +84,9 @@ typedef int (*pthread_rwlock_wrlock_t)(pthread_rwlock_t *);
 typedef int (*pthread_rwlock_rdlock_t)(pthread_rwlock_t *);
 typedef int (*objc_sync_enter_t)(id obj);
 typedef id (*objc_storeStrong_t)(id *object, id value);
+typedef id (*objc_loadWeak_t)(id *object);
+typedef id (*objc_storeWeak_t)(id *object, id value);
+typedef id (*object_getIvar_t)(id object, Ivar ivar);
 typedef id (*objc_msgSend_t)(void);
 typedef ssize_t (*send_t)(int socket, const void *buffer, size_t length, int flags);
 typedef ssize_t (*sendto_t)(int socket, const void *buffer, size_t length, int flags,
@@ -179,6 +182,24 @@ int objc_sync_enter(id obj) {
 id objc_storeStrong(id * object, id value);
 id objc_storeStrong(id * object, id value) {
     CHECK_FUNCTION_MSG(objc_storeStrong, "object retain");
+    return funcptr(object,value);
+}
+
+id objc_loadWeak(id * object);
+id objc_loadWeak(id * object) {
+    CHECK_FUNCTION_MSG(objc_loadWeak, "weak load");
+    return funcptr(object);
+}
+
+id objc_storeWeak(id * object, id value);
+id objc_storeWeak(id * object, id value) {
+    CHECK_FUNCTION_MSG(objc_storeWeak, "weak store");
+    return funcptr(object,value);
+}
+
+id object_getIvar(id object, Ivar value);
+id object_getIvar(id object, Ivar value) {
+    CHECK_FUNCTION_MSG(object_getIvar, "ivar fetch");
     return funcptr(object,value);
 }
 
