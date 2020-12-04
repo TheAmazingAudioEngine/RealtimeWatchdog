@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RealtimeWatchdog"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "A library for iOS audio which acts as a watchdog for unsafe activity on the audio thread."
   s.description  = <<-DESC
 This library for iOS acts as a watchdog for activities on the Core Audio thread that are considered unsafe:
@@ -17,8 +17,8 @@ It won’t catch everything, and it won’t catch anything in Apple’s own syst
   s.homepage     = "https://github.com/TheAmazingAudioEngine/RealtimeWatchdog"
   s.license      = 'zlib'
   s.author       = { "Michael Tyson" => "michael@atastypixel.com" }
-  s.source       = { :git => "https://github.com/TheAmazingAudioEngine/RealtimeWatchdog.git", :tag => "1.0.1" }
-  s.ios.deployment_target = '8.0'
+  s.source       = { :git => "https://github.com/TheAmazingAudioEngine/RealtimeWatchdog.git", :tag => "1.0.2" }
+  s.ios.deployment_target = '9.0'
   s.source_files = 'RealtimeWatchdog/*'
   s.pod_target_xcconfig = { 'OTHER_CFLAGS' => '-fno-modules' }
   s.requires_arc = false
