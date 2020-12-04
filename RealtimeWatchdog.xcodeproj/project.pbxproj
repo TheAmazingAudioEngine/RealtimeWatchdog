@@ -96,7 +96,7 @@
 		4C636E291D0D878B005A380B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "A Tasty Pixel";
 				TargetAttributes = {
 					4C636E301D0D878B005A380B = {
