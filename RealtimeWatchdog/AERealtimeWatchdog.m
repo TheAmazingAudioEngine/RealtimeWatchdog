@@ -57,14 +57,23 @@ static void AERealtimeWatchdogUnsafeActivityWarning(const char * activity) {
 #endif
 }
 
-BOOL AERealtimeWatchdogIsOnRealtimeThread(void);
+
 BOOL AERealtimeWatchdogIsOnRealtimeThread(void) {
     pthread_t thread = pthread_self();
+
+#if 0
     int policy;
     struct sched_param param;
     if ( pthread_getschedparam(thread, &policy, &param) == 0 && param.sched_priority >= sched_get_priority_max(policy) ) {
         return YES;
     }
+#else
+    char name[21];
+    if ( pthread_getname_np(thread, name, sizeof(name)) == 0 && !strcmp(name, "AURemoteIO::IOThread") ) {
+        return YES;
+    }
+#endif
+    
     return NO;
 }
 
