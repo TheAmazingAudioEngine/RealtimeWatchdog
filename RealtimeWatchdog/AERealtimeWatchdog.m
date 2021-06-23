@@ -61,7 +61,7 @@ static void AERealtimeWatchdogUnsafeActivityWarning(const char * activity) {
 BOOL AERealtimeWatchdogIsOnRealtimeThread(void) {
     pthread_t thread = pthread_self();
 
-#if 0
+#if 0 // Policy check seems to not work any more on iOS 14; disabled for now
     int policy;
     struct sched_param param;
     if ( pthread_getschedparam(thread, &policy, &param) == 0 && param.sched_priority >= sched_get_priority_max(policy) ) {
