@@ -34,6 +34,8 @@
 
 #ifndef __ASSEMBLER__
 
+#import "AERealtimeWatchdogExt.h"
+
 /*!
  * Pause monitoring until AERealtimeWatchdogResume called
  */
