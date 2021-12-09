@@ -11,6 +11,8 @@
 		4C636E421D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
 		4C636E431D0D87AF005A380B /* AERealtimeWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4C636E461D0D882E005A380B /* AERealtimeWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A40738DF271A3EC100C636FB /* AERealtimeWatchdogExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A40738DE271A3EC100C636FB /* AERealtimeWatchdogExt.m */; };
+		A43D51A827212EDF00C931B1 /* AERealtimeWatchdogExt.h in Headers */ = {isa = PBXBuildFile; fileRef = A40738DD271A339600C636FB /* AERealtimeWatchdogExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "AERealtimeWatchdog-simulator-x86_64.s"; sourceTree = "<group>"; };
 		4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERealtimeWatchdog.h; sourceTree = "<group>"; };
 		4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERealtimeWatchdog.m; sourceTree = "<group>"; };
+		A40738DD271A339600C636FB /* AERealtimeWatchdogExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AERealtimeWatchdogExt.h; sourceTree = "<group>"; };
+		A40738DE271A3EC100C636FB /* AERealtimeWatchdogExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AERealtimeWatchdogExt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				4C636E3E1D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s */,
 				4C636E3F1D0D87AF005A380B /* AERealtimeWatchdog.h */,
 				4C636E401D0D87AF005A380B /* AERealtimeWatchdog.m */,
+				A40738DD271A339600C636FB /* AERealtimeWatchdogExt.h */,
+				A40738DE271A3EC100C636FB /* AERealtimeWatchdogExt.m */,
 			);
 			path = RealtimeWatchdog;
 			sourceTree = "<group>";
@@ -67,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C636E461D0D882E005A380B /* AERealtimeWatchdog.h in Headers */,
+				A43D51A827212EDF00C931B1 /* AERealtimeWatchdogExt.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +103,7 @@
 		4C636E291D0D878B005A380B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "A Tasty Pixel";
 				TargetAttributes = {
 					4C636E301D0D878B005A380B = {
@@ -127,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40738DF271A3EC100C636FB /* AERealtimeWatchdogExt.m in Sources */,
 				4C636E421D0D87AF005A380B /* AERealtimeWatchdog-simulator-x86_64.s in Sources */,
 				4C636E431D0D87AF005A380B /* AERealtimeWatchdog.m in Sources */,
 				4C636E411D0D87AF005A380B /* AERealtimeWatchdog-arm64.s in Sources */,

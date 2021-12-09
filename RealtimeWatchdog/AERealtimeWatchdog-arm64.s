@@ -43,6 +43,8 @@
  * limitations under the License.
  */
 
+#define REALTIME_WATCHDOG_INCLUDED_BY_ASM 1
+
 #include "AERealtimeWatchdog.h"
 #if __arm64__ && REALTIME_WATCHDOG_ENABLED
 

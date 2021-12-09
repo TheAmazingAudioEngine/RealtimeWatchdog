@@ -1,5 +1,5 @@
 //
-//  AERealtimeWatchdog.h
+//  AERealtimeWatchdogMonitor.h
 //  TheAmazingAudioEngine
 //
 //  Created by Michael Tyson on 12/06/2016.
@@ -25,12 +25,31 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-#ifdef DEBUG
+// Uncomment the following to use the thread registration functions. You must call
+// AERealtimeWatchdogStartMonitoring and AERealtimeWatchdogStopMonitoring from the realtime thread.
+//#define USE_WATCHDOG_REGISTRATION_FUNCTIONS 1
 
-// Comment out the following to disable the realtime watchdog
-#define REALTIME_WATCHDOG_ENABLED 1
 
+#if !(REALTIME_WATCHDOG_INCLUDED_BY_ASM)
+#if (REALTIME_WATCHDOG_ENABLED && USE_WATCHDOG_REGISTRATION_FUNCTIONS)
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+	// Call this at the very top of the playback and record callbacks
+	void AERealtimeWatchdogStartMonitoring(void);
+	// Call this at the very end of the playback and record callbacks
+	void AERealtimeWatchdogStopMonitoring(void);
+#if defined(__cplusplus)
+}
 #endif
 
+#else // !REALTIME_WATCHDOG_ENABLED
 
-#import "AERealtimeWatchdogExt.h"
+	// Stubbed out for release
+	static inline void AERealtimeWatchdogStartMonitoring(void) {};
+	static inline void AERealtimeWatchdogStopMonitoring(void) {};
+
+#endif // REALTIME_WATCHDOG_ENABLED
+#endif // REALTIME_WATCHDOG_INCLUDED_BY_ASM
+
