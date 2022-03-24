@@ -32,5 +32,18 @@
 
 #endif
 
+#ifndef __ASSEMBLER__
+
+/*!
+ * Pause monitoring until AERealtimeWatchdogResume called
+ */
+void AERealtimeWatchdogPause(void);
+
+/*!
+ * Resume monitoring
+ */
+void AERealtimeWatchdogResume(void);
+
+#endif
 
 #import "AERealtimeWatchdogExt.h"
