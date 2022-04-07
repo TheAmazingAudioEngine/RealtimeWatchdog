@@ -48,4 +48,3 @@ void AERealtimeWatchdogResume(void);
 
 #endif
 
-#import "AERealtimeWatchdogExt.h"
