@@ -43,8 +43,6 @@
  * limitations under the License.
  */
 
-#define REALTIME_WATCHDOG_INCLUDED_BY_ASM 1
-
 #include <TargetConditionals.h>
 #include "AERealtimeWatchdog.h"
 #if __x86_64__ && TARGET_OS_SIMULATOR && REALTIME_WATCHDOG_ENABLED
