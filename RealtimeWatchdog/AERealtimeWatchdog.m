@@ -26,6 +26,7 @@
 //
 
 #import "AERealtimeWatchdog.h"
+#import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 static BOOL __paused = NO;
@@ -67,6 +68,19 @@ static void AERealtimeWatchdogUnsafeActivityWarning(const char * activity) {
 }
 
 
+char kAERealtimeWatchdogThreadName[64] = "AURemoteIO::IOThread";
+
+void InitRealtimeThreadName(void) __attribute__((constructor));
+void InitRealtimeThreadName(void) {
+	if (@available(iOS 14.0, *)) {
+		if (NSProcessInfo.processInfo.isiOSAppOnMac) {
+			strncpy(kAERealtimeWatchdogThreadName, "com.apple.audio.IOThread.client", sizeof(kAERealtimeWatchdogThreadName));
+		}
+	}
+}
+
+
+
 pthread_t sAERealtimeThread = 0;
 
 BOOL AERealtimeWatchdogIsOnRealtimeThread(void) {
@@ -83,8 +97,8 @@ BOOL AERealtimeWatchdogIsOnRealtimeThread(void) {
 		return YES;
 	}
 #else
-    char name[21];
-    if ( pthread_getname_np(thread, name, sizeof(name)) == 0 && !strcmp(name, "AURemoteIO::IOThread") ) {
+    char name[64];
+    if ( pthread_getname_np(thread, name, sizeof(name)) == 0 && !strcmp(name, kAERealtimeWatchdogThreadName) ) {
         return YES;
     }
 #endif

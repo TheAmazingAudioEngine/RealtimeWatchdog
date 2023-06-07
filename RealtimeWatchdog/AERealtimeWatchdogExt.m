@@ -35,15 +35,15 @@
 
 
 extern pthread_t sAERealtimeThread;
-
+extern char kAERealtimeWatchdogThreadName[64];
 
 // Call this at the very top of the playback and record callbacks
 void AERealtimeWatchdogStartMonitoring(void) {
 	pthread_t thread = pthread_self();
 
 	// All we really need is to assign sAERealtimeThread, but do a few sanity checks
-	char name[21];
-	if ( pthread_getname_np(thread, name, sizeof(name)) == 0 && !strcmp(name, "AURemoteIO::IOThread") ) {
+	char name[64];
+	if ( pthread_getname_np(thread, name, sizeof(name)) == 0 && !strcmp(name, kAERealtimeWatchdogThreadName) ) {
 		if (sAERealtimeThread != NULL) {
 			printf("AERealtimeWatchdog: Unmatched start/stop!\n");
 		}
