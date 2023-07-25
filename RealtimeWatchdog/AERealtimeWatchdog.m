@@ -67,16 +67,14 @@ static void AERealtimeWatchdogUnsafeActivityWarning(const char * activity) {
 #endif
 }
 
-
+#if TARGET_OS_MACCATALYST
+char kAERealtimeWatchdogThreadName[64] = "com.apple.audio.IOThread.client";
+#else
 char kAERealtimeWatchdogThreadName[64] = "AURemoteIO::IOThread";
+#endif
 
 void InitRealtimeThreadName(void) __attribute__((constructor));
 void InitRealtimeThreadName(void) {
-	if (@available(iOS 13.0, *)) {
-		if (NSProcessInfo.processInfo.isMacCatalystApp) {
-			strncpy(kAERealtimeWatchdogThreadName, "com.apple.audio.IOThread.client", sizeof(kAERealtimeWatchdogThreadName));
-		}
-	}
 	if (@available(iOS 14.0, *)) {
 		if (NSProcessInfo.processInfo.isiOSAppOnMac) {
 			strncpy(kAERealtimeWatchdogThreadName, "com.apple.audio.IOThread.client", sizeof(kAERealtimeWatchdogThreadName));
